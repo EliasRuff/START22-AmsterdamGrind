@@ -77,7 +77,7 @@ def expand_activity_data(activity_data):
 def get_user_activity(activity_data, userId):
   full_activity_data = expand_activity_data(activity_data)
 
-  user_activity_data = full_activity_data[full_activity_data.userId==uid]
+  user_activity_data = full_activity_data[full_activity_data.userId==userId]
   activities = user_activity_data[['id','userId','category_type','subcat']].groupby(['userId','category_type','subcat']).count().reset_index()
   activity_time = user_activity_data[['userId','category_type','subcat', 'activityTime']].groupby(['userId','category_type','subcat']).max().reset_index()
   activities = activities.merge(activity_time,on=['userId', 'category_type', 'subcat'])
