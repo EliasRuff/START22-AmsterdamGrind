@@ -74,6 +74,6 @@ def getUserBelonging(key):
 
 ###How To Use###
 #Run init() first. Afterwards get user belongig list back by providing getUserBelonging with key. See below:
-init()
-print(getUserBelonging("612C092CD05AD9F2F9E7A2D03526FDA5"))
+#init()
+#print(getUserBelonging("612C092CD05AD9F2F9E7A2D03526FDA5"))
 #print(getUserBelonging("D0E1963A7D0C8AC343AE79A39D8F5CBE"))
