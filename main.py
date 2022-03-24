@@ -8,6 +8,7 @@ uid = 'D0E1963A7D0C8AC343AE79A39D8F5CBE'
 activities = pd.read_json('./activities.json')
 pandaMove = pd.read_json("./movedata.json")
 users = pd.read_json("./users.json")
+coach_catalogue = pd.read_csv('./coach_catalogue.csv')
 
 belongingsDict = init(activities,pandaMove)
 def getSimilarUsers(key):
