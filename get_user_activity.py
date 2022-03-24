@@ -79,14 +79,16 @@ def expand_activity_data(activity_data):
 def get_user_activity(activity_data, userId):
   full_activity_data = expand_activity_data(activity_data)
 
-  user_activity_data = full_activity_data[full_activity_data.userId==userId]
+  user_activity_data = full_activity_data[full_activity_data.userId==uid]
   activities = user_activity_data[['id','userId','category_type','subcat']].groupby(['userId','category_type','subcat']).count().reset_index()
+  activity_time = user_activity_data[['userId','category_type','subcat', 'activityTime']].groupby(['userId','category_type','subcat']).max().reset_index()
+  activities = activities.merge(activity_time,on=['userId', 'category_type', 'subcat'])
   activities = activities.sort_values('id',ascending=False)
   activities = activities[activities.category_type!='']
   activity_count = activities.sum().id
   percentage = activities.id.divide(activity_count)
   activities['percentage'] = percentage
-  return activities[['category_type', 'subcat', 'percentage']]
+  return activities[['category_type', 'subcat', 'percentage', 'activityTime']]
 
 
 uid = 'AC98C327250EEA5DDE57783F6F21FF95'
