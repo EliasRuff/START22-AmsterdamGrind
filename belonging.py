@@ -20,7 +20,7 @@ def defaultValue():
 
 
 def init(pandaActivity, pandaMove):
-    userBelongings = defaultdict(defaultValue)
+    userBelongings = defaultdict(lambda: [0,0,0,0,0,0])
     pandaMove["timeStart"] = pandaMove["timeStart"].map(lambda x: timeToInt(str(x)[-5:]))
     pandasAgeGenderOnly = pandaActivity[["userId","age", "gender"]]
     pandasAgeGenderOnly["gender"] = pandasAgeGenderOnly["gender"].map(lambda x: genderToInt(str(x)))
@@ -51,8 +51,6 @@ def init(pandaActivity, pandaMove):
     ClusterEntriesPerUserId = conncatinated.groupby(['userId','cluster'])
 
     userIds = conncatinated["userId"].drop_duplicates()
-
-    userBelongings = {}
 
     for id in userIds:
         userBelongings[id] = [0,0,0,0,0,0]
