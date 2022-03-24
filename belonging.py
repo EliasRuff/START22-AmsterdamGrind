@@ -2,9 +2,7 @@ import sklearn.cluster as sk
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-
-
-userBelongings = {}
+from collections import defaultdict
 
 def timeToInt(time):
     hours = (time.split(":")[0])[:-1]
@@ -16,9 +14,13 @@ def genderToInt(gender):
         return 0
     else:
         return 1
+def defaultValue():
+    return [0,0,0,0,0,0]
+
+
 
 def init(pandaActivity, pandaMove):
-    global userBelongings
+    userBelongings = defaultdict(defaultValue)
     pandaMove["timeStart"] = pandaMove["timeStart"].map(lambda x: timeToInt(str(x)[-5:]))
     pandasAgeGenderOnly = pandaActivity[["userId","age", "gender"]]
     pandasAgeGenderOnly["gender"] = pandasAgeGenderOnly["gender"].map(lambda x: genderToInt(str(x)))
@@ -65,10 +67,8 @@ def init(pandaActivity, pandaMove):
         size = len(group.index)
         for i in range(0,6):
             userBelongings[userId][i] /=size
+    return userBelongings
 
-def getUserBelonging(key):
-    global userBelongings
-    return userBelongings[key]
 
 ###How To Use###
 #Run init() first. Afterwards get user belongig list back by providing getUserBelonging with key. See below:
