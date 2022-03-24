@@ -4,8 +4,8 @@ sns.set(font_scale=1.2, style="whitegrid", palette='magma')
 import matplotlib.pyplot as plt
 import json
 
-move_data = pd.read_json('.//data//movedata.json')
-activities = pd.read_json('.//data//activities.json')
+move_data = pd.read_json('./movedata.json')
+activities = pd.read_json('./activities.json')
 
 def expand_activity_data(activity_data):
   def map_plain(x):
