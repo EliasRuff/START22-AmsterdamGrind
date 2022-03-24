@@ -17,10 +17,8 @@ def genderToInt(gender):
     else:
         return 1
 
-def init():
+def init(pandaActivity, pandaMove):
     global userBelongings
-    pandaMove = pd.read_json("./movedata.json")
-    pandaActivity = pd.read_json("./activities.json")
     pandaMove["timeStart"] = pandaMove["timeStart"].map(lambda x: timeToInt(str(x)[-5:]))
     pandasAgeGenderOnly = pandaActivity[["userId","age", "gender"]]
     pandasAgeGenderOnly["gender"] = pandasAgeGenderOnly["gender"].map(lambda x: genderToInt(str(x)))
