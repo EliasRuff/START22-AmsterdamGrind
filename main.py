@@ -26,7 +26,9 @@ def getSimilarUsers(key):
 
 
 
-print(getSimilarUsers(uid))
+suggestion = getSimilarUsers(uid)
+suggestion[0][0]
+
   
 #print(getUserBelonging(uid))
 #print(get_user_activity(activities, uid))

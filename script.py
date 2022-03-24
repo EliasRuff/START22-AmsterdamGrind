@@ -16,12 +16,12 @@ for k, vec in enumerate(ran_matrix):
 #dist_people: (dist:int, uid:string)
 def suggestions(dist_people, maxValue):
     suggestion = []
-    close_people = [dist_people[k,1] for k,i in enumerate(dist_people) if i[0] < 0.3*maxValue]
-    intermediate_people = [dist_people[k,1] for k,i in enumerate(dist_people) if i[0]>0.3*maxValue and i[0]<0.7*maxValue]
-    distant_people = [dist_people[k,1] for k,i in enumerate(dist_people) if i[0]>0.7*maxValue]
+    close_people = [dist_people[k][1] for k,i in enumerate(dist_people) if i[0] < 0.3*maxValue]
+    intermediate_people = [dist_people[k][1] for k,i in enumerate(dist_people) if i[0]>0.3*maxValue and i[0]<0.7*maxValue]
+    distant_people = [dist_people[k][1] for k,i in enumerate(dist_people) if i[0]>0.7*maxValue]
 
     Love = random.sample(close_people, 2)
-    Neutral = random.sample(intermediate_people, 2)
+    Neutral = random.sample(intermediate_people, 1)
     Hate = random.sample(distant_people, 1)
     
     suggested_people = [Love, Neutral, Hate]
