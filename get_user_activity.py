@@ -1,7 +1,4 @@
 import pandas as pd
-import seaborn as sns
-sns.set(font_scale=1.2, style="whitegrid", palette='magma')
-import matplotlib.pyplot as plt
 import json
 
 

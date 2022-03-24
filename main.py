@@ -1,6 +1,6 @@
 from torch import normal
 from belonging import *
-#from get_user_activity import *
+from get_user_activity import *
 from sklearn.preprocessing import normalize
 from script import suggestions
 
@@ -18,17 +18,24 @@ def getSimilarUsers(key):
     
     for vals in users.values:
         id = vals[0]
-        dist = np.linalg.norm(np.subtract(clusterAffiliation, belongingsDict[id]))
-        distanceToUsers.append([dist, id])
-        maxVal = max(maxVal, dist)
+        if(belongingsDict[id] != [0,0,0,0,0,0]):
+            dist = np.linalg.norm(np.subtract(clusterAffiliation, belongingsDict[id]))
+            distanceToUsers.append([dist, id])
+            maxVal = max(maxVal, dist)
     return suggestions(distanceToUsers, maxVal)
 
 
 
 
 suggestion = getSimilarUsers(uid)
-suggestion[0][0]
+"""
+print(belongingsDict[suggestion[0][0]])
+print(belongingsDict[suggestion[0][1]])
+print(belongingsDict[suggestion[1][0]])
+print(belongingsDict[suggestion[2][0]])
+print(belongingsDict[uid])
+"""
 
   
 #print(getUserBelonging(uid))
-#print(get_user_activity(activities, uid))
+print(get_user_activity(activities, uid))
