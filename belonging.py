@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from collections import defaultdict
 
+np.random.seed(1337)
+
 def timeToInt(time):
     hours = (time.split(":")[0])[:-1]
     minutes = time.split(":")[1]
@@ -65,7 +67,60 @@ def init(pandaActivity, pandaMove):
         size = len(group.index)
         for i in range(0,6):
             userBelongings[userId][i] /=size
+
+    #createPlots(kmeans=kmeans)
     return userBelongings
+
+
+def createPlots(kmeans):
+    metMinutes = [kmeans.cluster_centers_[k][0] for k in range(len(kmeans.cluster_centers_))]
+    timeStart = [kmeans.cluster_centers_[k][1] for k in range(len(kmeans.cluster_centers_))]
+    duration = [kmeans.cluster_centers_[k][2] for k in range(len(kmeans.cluster_centers_))]
+    age = [kmeans.cluster_centers_[k][3] for k in range(len(kmeans.cluster_centers_))]
+    gender = [kmeans.cluster_centers_[k][4] for k in range(len(kmeans.cluster_centers_))]
+    clusterIntensities = [kmeans.cluster_centers_[k][5] for k in range(len(kmeans.cluster_centers_))]
+
+    plt.clf()
+    plt.bar([1,2,3,4,5,6],metMinutes)
+    plt.ylabel('metMinutes')
+    plt.xlabel('Clusters')
+    plt.savefig('metMinutes.pdf')  
+    plt.clf()
+
+    plt.bar([1,2,3,4,5,6],timeStart)
+    plt.ylabel('timeStart')
+    plt.xlabel('Clusters')
+    plt.savefig('timeStart.pdf') 
+    plt.clf()
+
+    plt.bar([1,2,3,4,5,6],duration)
+    plt.ylabel('duration')
+    plt.xlabel('Clusters')
+    plt.savefig('duration.pdf') 
+    plt.clf()
+
+    plt.bar([1,2,3,4,5,6],age)
+    plt.ylabel('age')
+    plt.xlabel('Clusters')
+    plt.savefig('age.pdf') 
+    plt.clf()
+
+    plt.bar([1,2,3,4,5,6],gender)
+    plt.ylabel('gender')
+    plt.xlabel('Clusters')
+    plt.savefig('gender.pdf') 
+    plt.clf()
+
+    plt.bar([1,2,3,4,5,6],clusterIntensities)
+    plt.ylabel('Intensity')
+    plt.xlabel('Clusters')
+    plt.savefig('clusterIntensities.pdf') 
+    plt.clf()
+    
+    
+    
+    
+
 
 
 ###How To Use###

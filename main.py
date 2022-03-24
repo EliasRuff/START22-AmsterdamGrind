@@ -15,16 +15,14 @@ def getSimilarUsers(key):
     distanceToUsers = []
     clusterAffiliation = belongingsDict[key]
     
-    
     for vals in users.values:
         id = vals[0]
+        if id == uid: continue
         if(belongingsDict[id] != [0,0,0,0,0,0]):
             dist = np.linalg.norm(np.subtract(clusterAffiliation, belongingsDict[id]))
             distanceToUsers.append([dist, id])
             maxVal = max(maxVal, dist)
     return suggestions(distanceToUsers, maxVal)
-
-
 
 
 suggestion = getSimilarUsers(uid)
