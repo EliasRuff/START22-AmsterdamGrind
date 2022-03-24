@@ -4,8 +4,6 @@ sns.set(font_scale=1.2, style="whitegrid", palette='magma')
 import matplotlib.pyplot as plt
 import json
 
-move_data = pd.read_json('./movedata.json')
-activities = pd.read_json('./activities.json')
 
 def expand_activity_data(activity_data):
   def map_plain(x):
@@ -90,6 +88,8 @@ def get_user_activity(activity_data, userId):
   activities['percentage'] = percentage
   return activities[['category_type', 'subcat', 'percentage', 'activityTime']]
 
+#move_data = pd.read_json('./movedata.json')
+#activities = pd.read_json('./activities.json')
 
-uid = 'AC98C327250EEA5DDE57783F6F21FF95'
-print(get_user_activity(activities, uid))
+#uid = 'AC98C327250EEA5DDE57783F6F21FF95'
+#print(get_user_activity(activities, uid))
