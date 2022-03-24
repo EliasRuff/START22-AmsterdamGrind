@@ -64,14 +64,14 @@ def expand_activity_data(activity_data):
   subcat_col         = activity_data.activityDetails.apply(map_subcat)
   
   aggregate = {
-    'id': activities.id,
+    'id': activity_data.id,
     'plain': plain_col,
     'activity': activity_col,
     'category_type': category_type_col,
     'subcat': subcat_col,
   }
   jon_cols_data = pd.DataFrame(aggregate)
-  return pd.merge(left=activities,right=jon_cols_data,on='id')
+  return pd.merge(left=activity_data,right=jon_cols_data,on='id')
 
 
 def get_user_activity(activity_data, userId):
