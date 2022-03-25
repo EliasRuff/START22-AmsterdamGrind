@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-
+np.random.seed(1337)
 
 randomDate = pd.DataFrame(np.random.randint(0,100,size=(100, 4)), columns=[
         "metMinutes",
@@ -62,5 +62,5 @@ for k in range(1, 15):
 plt.plot(range(1,15), SquaredDistancesPerK, 'bx-')
 plt.xlabel('k')
 plt.ylabel('Sum_of_squared_distances')
-plt.title('Elbow Method For Optimal k with Gender & Intensity')
+plt.title('Elbow Method For Optimal k')
 plt.show()
