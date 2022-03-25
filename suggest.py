@@ -1,4 +1,5 @@
 from queue import Empty
+from re import M
 from main import *
 import datetime
 
@@ -22,11 +23,11 @@ def hatesSuggestion(data):
         if row['category_type'] == bestGuess['category_type'] and row['subcat'] == bestGuess['subcat']:
             matchingRow = row
             break
-    if matchingRow == None:
+    if not isinstance(matchingRow, pd.DataFrame):
         return False
     else:
         if isDateFarInPast(bestGuess['activityTime'], matchingRow['activityTime']):
-            return matchingRow['percentage'] < 0.25
+            return matchingRow['percentage'].any() < 0.25
         else:
             return False
 
@@ -43,7 +44,8 @@ def printSuggestion(guidList, suggesstionComment):
         if hatesSuggestion(guid):
                 continue
         else:
-            print(suggesstionComment + coach_activity(coach_catalogue, guid.iloc[0]['category_type'], guid.iloc[0]['subcat'],1))
+            detailedSuggestions = coach_activity(coach_catalogue, guid.iloc[0]['category_type'], guid.iloc[0]['subcat'],1)
+            print(suggesstionComment + detailedSuggestions.iloc[0]['name'])
 
 printSuggestion(similarUsers[0], "You might enjoy: ")
 printSuggestion(similarUsers[1], "Others enjoyed: ")
