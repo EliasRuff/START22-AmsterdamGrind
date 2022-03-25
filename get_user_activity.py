@@ -1,6 +1,10 @@
 import pandas as pd
 import json
 
+pd.options.mode.chained_assignment = None
+
+print("I'm working, don't worry :)")
+
 
 def expand_activity_data(activity_data):
   def map_plain(x):

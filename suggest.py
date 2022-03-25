@@ -1,5 +1,7 @@
+import os
 from queue import Empty
 from re import M
+import sys
 from main import *
 import datetime
 
@@ -47,6 +49,12 @@ def printSuggestion(guidList, suggesstionComment):
             detailedSuggestions = coach_activity(coach_catalogue, guid.iloc[0]['category_type'], guid.iloc[0]['subcat'],1)
             print(suggesstionComment + detailedSuggestions.iloc[0]['name'])
 
-printSuggestion(similarUsers[0], "You might enjoy: ")
-printSuggestion(similarUsers[1], "Others enjoyed: ")
-printSuggestion(similarUsers[2], "Have you heard of: ")
+while(True):
+    while(True):
+        val = input("Are you ready for a suggestion? (y): ")
+        if val == 'y':
+            break
+
+    printSuggestion(similarUsers[0], "You might enjoy: ")
+    printSuggestion(similarUsers[1], "Others enjoyed: ")
+    printSuggestion(similarUsers[2], "Have you heard of: ")
