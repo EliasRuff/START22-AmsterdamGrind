@@ -1,9 +1,8 @@
 import os
-from queue import Empty
-from re import M
 import sys
 from main import *
 import datetime
+from prettytable import PrettyTable
 
 testuser = 'D0E1963A7D0C8AC343AE79A39D8F5CBE'
 
@@ -48,13 +47,31 @@ def printSuggestion(guidList, suggesstionComment):
         else:
             detailedSuggestions = coach_activity(coach_catalogue, guid.iloc[0]['category_type'], guid.iloc[0]['subcat'],1)
             print(suggesstionComment + detailedSuggestions.iloc[0]['name'])
+def theBusiness():
+    print("\n=========================================================================\n\nThe user we look at has the following activity history:\n")
+    t = PrettyTable(['Category', 'Subcategory', 'Percentage', 'Most recent occurence'])
+    for index, row in userdata.iterrows():
+        t.add_row([row['category_type'], row['subcat'], row['percentage'], row['activityTime']])
+    print(t)
+    print("")
 
-while(True):
     while(True):
-        val = input("Are you ready for a suggestion? (y): ")
-        if val == 'y':
-            break
+        while(True):
+            val = input("Are you ready for a suggestion? (y): ")
+            if val == 'y':
+                print("")
+                break
 
-    printSuggestion(similarUsers[0], "You might enjoy: ")
-    printSuggestion(similarUsers[1], "Others enjoyed: ")
-    printSuggestion(similarUsers[2], "Have you heard of: ")
+        printSuggestion(similarUsers[0], "You might enjoy: ")
+        printSuggestion(similarUsers[1], "Others enjoyed: ")
+        printSuggestion(similarUsers[2], "Have you heard of: ")
+        print("")
+
+try:
+    theBusiness()
+except KeyboardInterrupt:
+    print('\n\nGoodbye (ʘ‿ʘ)╯')
+    try:
+        sys.exit(0)
+    except SystemExit:
+        os._exit(0)
