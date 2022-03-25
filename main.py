@@ -26,7 +26,7 @@ def getSimilarUsers(key):
     return suggestions(distanceToUsers, maxVal)
 
 
-suggestion = getSimilarUsers(uid)
+#suggestion = getSimilarUsers(uid)
 """
 print(belongingsDict[suggestion[0][0]])
 print(belongingsDict[suggestion[0][1]])
@@ -37,4 +37,4 @@ print(belongingsDict[uid])
 
   
 #print(getUserBelonging(uid))
-print(get_user_activity(activities, uid))
+#print(get_user_activity(activities, uid))
